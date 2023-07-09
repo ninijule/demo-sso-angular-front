@@ -9,13 +9,20 @@ import {HomeComponent} from './core/component/home/home.component';
 import {ProfileComponent} from './core/component/profile/profile.component';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToolbarComponent } from './core/component/toolbar/toolbar.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import { MainComponent } from './core/component/main/main.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    ToolbarComponent,
+    MainComponent
   ],
   imports: [
     AppRoutingModule,
@@ -24,6 +31,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     RouterOutlet,
     BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
 
   ],
   providers: [
