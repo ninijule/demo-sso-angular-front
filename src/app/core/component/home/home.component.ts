@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {authCodeFlowConfig} from "../../../../config/authCodeflow";
-import {JwksValidationHandler} from "angular-oauth2-oidc-jwks";
 import {OAuthService} from "angular-oauth2-oidc";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-home',
@@ -10,7 +9,7 @@ import {OAuthService} from "angular-oauth2-oidc";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private oauth2service: OAuthService) {
+  constructor(private oauth2service: OAuthService, private authService: AuthService) {
 
   }
 
@@ -21,14 +20,12 @@ export class HomeComponent implements OnInit {
 
 
   ConfigureSSO() {
-    this.oauth2service.configure(authCodeFlowConfig);
-    this.oauth2service.tokenValidationHandler = new JwksValidationHandler();
-    this.oauth2service.loadDiscoveryDocumentAndTryLogin();
+    this.authService.configureSSO();
   }
 
 
   login() {
-    this.oauth2service.initCodeFlow();
+    this.authService.login();
   }
 
 }

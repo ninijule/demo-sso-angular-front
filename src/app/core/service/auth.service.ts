@@ -16,11 +16,12 @@ export class AuthService {
   configureSSO() {
     this.oauth2Service.configure(authCodeFlowConfig);
     this.oauth2Service.tokenValidationHandler = new JwksValidationHandler();
-    this.oauth2Service.loadDiscoveryDocumentAndLogin();
+    this.oauth2Service.loadDiscoveryDocumentAndTryLogin().then(r => console.log(r));
 
   }
 
   login() {
+
     this.oauth2Service.initCodeFlow();
   }
 
