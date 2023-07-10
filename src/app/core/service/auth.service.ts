@@ -13,6 +13,8 @@ export class AuthService {
   }
 
 
+
+
   configureSSO() {
     this.oauth2Service.configure(authCodeFlowConfig);
     this.oauth2Service.tokenValidationHandler = new JwksValidationHandler();
@@ -30,16 +32,13 @@ export class AuthService {
   }
 
   getIdentity() {
-    let claims: any = this.oauth2Service.getIdentityClaims();
-    console.log(claims);
-    return claims ? claims : null;
+    return this.oauth2Service.getIdentityClaims();
   }
 
 
   isUserLogged(): boolean {
     let hasIdToken = this.oauth2Service.hasValidIdToken();
     let hasAccessToken = this.oauth2Service.hasValidAccessToken();
-    console.log(hasIdToken + " | " + hasAccessToken);
     if (hasAccessToken && hasIdToken) {
       return true;
     } else {

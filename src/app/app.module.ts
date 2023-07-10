@@ -14,6 +14,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MainComponent} from './core/component/main/main.component';
+import {MatMenuModule} from "@angular/material/menu";
 
 
 @NgModule({
@@ -24,18 +25,19 @@ import {MainComponent} from './core/component/main/main.component';
     ToolbarComponent,
     MainComponent
   ],
-  imports: [
-    AppRoutingModule,
-    BrowserModule,
-    CommonModule,
-    HttpClientModule,
-    RouterOutlet,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
+    imports: [
+        AppRoutingModule,
+        BrowserModule,
+        CommonModule,
+        HttpClientModule,
+        RouterOutlet,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatMenuModule,
 
-  ],
+    ],
   providers: [
     provideOAuthClient()
   ],
