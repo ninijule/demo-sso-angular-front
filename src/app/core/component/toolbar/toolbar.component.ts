@@ -11,8 +11,8 @@ export class ToolbarComponent {
   constructor(private router: Router) {
   }
 
-  redirectToAnotherPage() {
-    this.router.navigate(['/profile']);
+  redirectToAnotherPage(pageName:string) {
+    this.router.navigate([`/${pageName}`]);
   }
 
 

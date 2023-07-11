@@ -19,7 +19,6 @@ export class AuthService {
     this.oauth2Service.configure(authCodeFlowConfig);
     this.oauth2Service.tokenValidationHandler = new JwksValidationHandler();
     this.oauth2Service.loadDiscoveryDocumentAndTryLogin().then(r => console.log(r));
-
   }
 
   login() {
@@ -42,6 +41,7 @@ export class AuthService {
     if (hasAccessToken && hasIdToken) {
       return true;
     } else {
+      this.oauth2Service.silentRefresh().then(r => console.log(r)).catch(e => console.log(e));
       this.router.navigate(["/"]);
       return false;
     }
