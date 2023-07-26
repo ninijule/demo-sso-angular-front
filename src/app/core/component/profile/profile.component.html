@@ -3,3 +3,9 @@
 <div *ngIf="userData">
   <span>User connected : {{userData.name}}</span>
 </div>
+
+<div *ngIf="movieModel != null && movieModel.length >= 1">
+  <span *ngFor="let movie of movieModel">
+    {{movie.name}}
+  </span>
+</div>
