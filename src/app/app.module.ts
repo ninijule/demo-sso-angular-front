@@ -39,7 +39,12 @@ import {MatMenuModule} from "@angular/material/menu";
 
     ],
   providers: [
-    provideOAuthClient()
+    provideOAuthClient({
+      resourceServer:{
+        allowedUrls: ["http://localhost:8080/realms/thales"],
+        sendAccessToken: true
+      }
+    })
   ],
   bootstrap: [AppComponent]
 })

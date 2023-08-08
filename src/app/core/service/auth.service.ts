@@ -67,15 +67,7 @@ export class AuthService {
   isUserLogged(): boolean {
     let hasIdToken = this.oauth2Service.hasValidIdToken();
     let hasAccessToken = this.oauth2Service.hasValidAccessToken();
-    if (hasAccessToken && hasIdToken) {
-      return true;
-    } else {
-      this.oauth2Service.silentRefresh().then(r => console.log(r)).catch(e => console.log(e));
-      console.log(hasIdToken);
-      console.log(hasAccessToken);
-      this.router.navigate(["/"]);
-      return false;
-    }
+    return hasAccessToken && hasIdToken;
   }
 
 
