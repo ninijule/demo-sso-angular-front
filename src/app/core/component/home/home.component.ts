@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OAuthService} from "angular-oauth2-oidc";
 import {AuthService} from "../../service/auth.service";
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,9 @@ import {AuthService} from "../../service/auth.service";
 export class HomeComponent implements OnInit {
 
 
-  isAuth : boolean = this.authService.isUserLogged();
+  isAuth: boolean = this.authService.isUserLogged();
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
 
   }
 
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
 
   ConfigureSSO() {
     this.authService.configureSSO();
+    if (this.authService.isUserLogged()) this.router.navigate(["/profile"]);
   }
 
 
@@ -31,8 +33,5 @@ export class HomeComponent implements OnInit {
     this.authService.login();
   }
 
-  logout(){
-    this.authService.logout();
-  }
 
 }

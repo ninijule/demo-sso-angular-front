@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {OAuthErrorEvent, OAuthService} from "angular-oauth2-oidc";
+import {OAuthErrorEvent, OAuthService, OAuthSuccessEvent} from "angular-oauth2-oidc";
 import {authCodeFlowConfig} from "../../../config/authCodeflow";
 import {JwksValidationHandler} from "angular-oauth2-oidc-jwks";
 import {Router} from "@angular/router";
@@ -24,35 +24,19 @@ export class AuthService {
   }
 
 
-  public configureSSO(): Promise<void> {
+  public configureSSO(): Promise<boolean> {
     this.oauth2Service.configure(authCodeFlowConfig);
     this.oauth2Service.tokenValidationHandler = new JwksValidationHandler();
-    return this.oauth2Service.loadDiscoveryDocument().then(() => {
-    }).then(() => {
-      this.oauth2Service.tryLogin().then(() => {
-        if (this.oauth2Service.hasValidAccessToken()) {
-          return Promise.resolve();
-        }
-        return this.oauth2Service.silentRefresh()
-          .then(() => Promise.resolve())
-          .catch(result => {
-            console.log(result);
-            if (result) {
-              return Promise.resolve();
-            }
-            return Promise.reject();
-          })
-      })
-    });
+    return this.oauth2Service.loadDiscoveryDocumentAndTryLogin();
   }
 
   login() {
-
     this.oauth2Service.initCodeFlow();
   }
 
-  logout() {
+  disconnect() {
     this.oauth2Service.logOut();
+    this.router.navigate(["/home"]);
   }
 
   getIdentity() {
