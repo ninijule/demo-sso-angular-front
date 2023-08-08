@@ -11,14 +11,18 @@ import {Route, Router} from "@angular/router";
 export class HomeComponent implements OnInit {
 
 
-  isAuth: boolean = this.authService.isUserLogged();
+  isAuth: boolean;
 
   constructor(private authService: AuthService, private router: Router) {
+    this.isAuth = this.authService.isLogged;
+    if (this.isAuth) this.router.navigate(["/profile"]);
 
   }
 
 
   ngOnInit(): void {
+    if (this.authService.isUserLogged()) this.router.navigate(["/profile"]);
+
     this.ConfigureSSO();
   }
 
@@ -26,6 +30,7 @@ export class HomeComponent implements OnInit {
   ConfigureSSO() {
     this.authService.configureSSO();
     if (this.authService.isUserLogged()) this.router.navigate(["/profile"]);
+
   }
 
 

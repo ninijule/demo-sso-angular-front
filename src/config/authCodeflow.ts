@@ -5,7 +5,7 @@ export const authCodeFlowConfig: AuthConfig = {
   issuer: 'http://localhost:8080/realms/thales',
 
   // URL of the SPA to redirect the user to after login
-  redirectUri: 'http://localhost:4200/home',
+  redirectUri: 'http://localhost:4200/profile',
 
   // The SPA's id. The SPA is registerd with this id at the auth-server
   // clientId: 'server.code',
@@ -26,4 +26,5 @@ export const authCodeFlowConfig: AuthConfig = {
   scope: 'openid profile email offline_access',
 
   showDebugInformation: true,
+  revocationEndpoint: 'http://localhost:4200/home'
 };

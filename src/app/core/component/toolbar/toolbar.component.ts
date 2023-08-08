@@ -7,13 +7,13 @@ import {AuthService} from "../../service/auth.service";
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
-export class ToolbarComponent  {
+export class ToolbarComponent {
 
 
-  userIsLogged: boolean = false;
+  userIsLogged: boolean;
 
   constructor(private router: Router, private authService: AuthService) {
-    this.userIsLogged = this.authService.isUserLogged();
+    this.userIsLogged = this.authService.isLogged;
   }
 
   redirectToAnotherPage(pageName: string) {

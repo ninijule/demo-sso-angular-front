@@ -4,8 +4,8 @@
   </button>
   <mat-menu #belowMenu="matMenu" yPosition="below">
     <button (click)="redirectToAnotherPage('')" mat-menu-item>Main</button>
-    <button (click)="redirectToAnotherPage('home')" mat-menu-item>Home</button>
-    <button (click)="redirectToAnotherPage('profile')" mat-menu-item>Profile</button>
+    <button *ngIf="!userIsLogged" (click)="redirectToAnotherPage('home')" mat-menu-item>Home</button>
+    <button *ngIf="userIsLogged" (click)="redirectToAnotherPage('profile')" mat-menu-item>Profile</button>
     <button *ngIf="userIsLogged" (click)="logout()" mat-menu-item>Déconnexion</button>
   </mat-menu>
   <span>My App</span>
