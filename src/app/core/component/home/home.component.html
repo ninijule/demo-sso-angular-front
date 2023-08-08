@@ -1,4 +1,8 @@
 <p>home works!</p>
-<div>
+<div *ngIf="!isAuth; else authenticated">
   <button (click)="login()">login</button>
 </div>
+<ng-template #authenticated>
+<span>You are connected</span>
+  <button (click)="logout()">logout</button>
+</ng-template>

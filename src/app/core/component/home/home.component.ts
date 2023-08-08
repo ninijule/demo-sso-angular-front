@@ -9,7 +9,10 @@ import {AuthService} from "../../service/auth.service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private oauth2service: OAuthService, private authService: AuthService) {
+
+  isAuth : boolean = this.authService.isUserLogged();
+
+  constructor(private authService: AuthService) {
 
   }
 
@@ -26,6 +29,10 @@ export class HomeComponent implements OnInit {
 
   login() {
     this.authService.login();
+  }
+
+  logout(){
+    this.authService.logout();
   }
 
 }

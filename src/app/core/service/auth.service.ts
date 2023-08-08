@@ -3,24 +3,11 @@ import {OAuthErrorEvent, OAuthService} from "angular-oauth2-oidc";
 import {authCodeFlowConfig} from "../../../config/authCodeflow";
 import {JwksValidationHandler} from "angular-oauth2-oidc-jwks";
 import {Router} from "@angular/router";
-import {BehaviorSubject, combineLatest, filter, map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  private isAuthenticatedSubject$ = new BehaviorSubject<boolean>(false);
-  public isAuthenticated$ = this.isAuthenticatedSubject$.asObservable();
-
-  private isDoneLoadingSubject$ = new BehaviorSubject<boolean>(false);
-  public isDoneLoading$ = this.isDoneLoadingSubject$.asObservable();
-
-
-  public canActivateProtectedRoute$: Observable<boolean> = combineLatest([
-    this.isAuthenticated$,
-    this.isDoneLoading$
-  ]).pipe(map(values => values.every(b => b)));
 
 
   constructor(private oauth2Service: OAuthService, private router: Router) {
@@ -31,29 +18,6 @@ export class AuthService {
         console.log(event);
       }
     });
-
-    window.addEventListener('storage', (event) => {
-      if (event.key != 'access_token' && event.key !== null) {
-        return;
-      }
-      this.isAuthenticatedSubject$.next(this.oauth2Service.hasValidAccessToken());
-      if (!this.oauth2Service.hasValidAccessToken()) {
-        this.router.navigate(['/home']);
-      }
-    });
-
-    this.oauth2Service.events.subscribe(e => {
-      this.isAuthenticatedSubject$.next(this.oauth2Service.hasValidAccessToken());
-    });
-
-
-    this.oauth2Service.events
-      .pipe(filter(e => ['token_received'].includes(e.type)))
-      .subscribe(e => this.oauth2Service.loadUserProfile());
-
-    this.oauth2Service.events
-      .pipe(filter(e => ['session_terminated', 'session_error'].includes(e.type)))
-      .subscribe(e => this.router.navigate(['/home']));
 
     this.oauth2Service.setupAutomaticSilentRefresh();
 
@@ -79,9 +43,6 @@ export class AuthService {
             return Promise.reject();
           })
       })
-    }).then(() => {
-      this.isDoneLoadingSubject$.next(true);
-
     });
   }
 
@@ -110,6 +71,8 @@ export class AuthService {
       return true;
     } else {
       this.oauth2Service.silentRefresh().then(r => console.log(r)).catch(e => console.log(e));
+      console.log(hasIdToken);
+      console.log(hasAccessToken);
       this.router.navigate(["/"]);
       return false;
     }
