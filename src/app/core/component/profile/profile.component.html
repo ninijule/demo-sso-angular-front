@@ -2,6 +2,7 @@
 
 <div *ngIf="userData">
   <span>User connected : {{userData.name}}</span>
+  <button (click)="incrementValue()"> {{this.counter$ | async}}</button>
 </div>
 
 <div *ngIf="movieModel != null && movieModel.length >= 1">
@@ -9,3 +10,5 @@
     {{movie.name}}
   </span>
 </div>
+
+
