@@ -11,14 +11,15 @@ export class ToolbarComponent implements OnInit {
   constructor(private authService: AuthService) {
   }
 
+  ngOnInit(): void {
+    this.configureSSO();
+  }
 
   logout() {
     this.authService.disconnect();
   }
 
-  ngOnInit(): void {
-    this.configureSSO();
-  }
+
 
   configureSSO() {
     this.authService.configureSSO();
