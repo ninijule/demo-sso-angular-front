@@ -5,15 +5,12 @@ import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {provideOAuthClient} from 'angular-oauth2-oidc';
 import {RouterOutlet} from "@angular/router";
-import {HomeComponent} from './core/component/home/home.component';
-import {ProfileComponent} from './core/component/profile/profile.component';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToolbarComponent} from './core/component/toolbar/toolbar.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-import {MainComponent} from './core/component/main/main.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {StoreModule} from "@ngrx/store";
 import {counterReducer} from "./core/reducer/counter.reducer";
@@ -23,10 +20,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    ProfileComponent,
     ToolbarComponent,
-    MainComponent
   ],
     imports: [
         AppRoutingModule,
