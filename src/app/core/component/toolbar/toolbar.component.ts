@@ -1,5 +1,4 @@
-import {Component} from '@angular/core';
-import {Router} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../service/auth.service";
 
 @Component({
@@ -7,22 +6,22 @@ import {AuthService} from "../../service/auth.service";
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
-export class ToolbarComponent {
+export class ToolbarComponent implements OnInit {
 
-
-  userIsLogged: boolean;
-
-  constructor(private router: Router, private authService: AuthService) {
-    this.userIsLogged = this.authService.isLogged;
-  }
-
-  redirectToAnotherPage(pageName: string) {
-    this.router.navigate([`/${pageName}`]);
+  constructor(private authService: AuthService) {
   }
 
 
   logout() {
     this.authService.disconnect();
+  }
+
+  ngOnInit(): void {
+    this.configureSSO();
+  }
+
+  configureSSO() {
+    this.authService.configureSSO();
   }
 
 }

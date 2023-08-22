@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {OAuthErrorEvent, OAuthService, OAuthSuccessEvent} from "angular-oauth2-oidc";
+import {OAuthErrorEvent, OAuthService} from "angular-oauth2-oidc";
 import {authCodeFlowConfig} from "../../../config/authCodeflow";
 import {JwksValidationHandler} from "angular-oauth2-oidc-jwks";
 import {Router} from "@angular/router";
@@ -24,36 +24,10 @@ export class AuthService {
   }
 
 
-  public configureSSO(): Promise<boolean> {
-    this.oauth2Service.configure({
-      issuer: 'http://localhost:8080/realms/thales',
-
-      // URL of the SPA to redirect the user to after login
-      redirectUri: 'http://localhost:4200/home',
-
-      // The SPA's id. The SPA is registerd with this id at the auth-server
-      // clientId: 'server.code',
-      clientId: 'trynity',
-
-      // Just needed if your auth server demands a secret. In general, this
-      // is a sign that the auth server is not configured with SPAs in mind
-      // and it might not enforce further best practices vital for security
-      // such applications.
-      // dummyClientSecret: 'secret',
-
-      responseType: 'code',
-
-      // set the scope for the permissions the client should request
-      // The first four are defined by OIDC.
-      // Important: Request offline_access to get a refresh token
-      // The api scope is a usecase specific one
-      scope: 'openid profile email offline_access',
-
-      showDebugInformation: true,
-      revocationEndpoint: 'http://localhost:4200/home'
-    });
+  public configureSSO() {
+    this.oauth2Service.configure(authCodeFlowConfig);
     this.oauth2Service.tokenValidationHandler = new JwksValidationHandler();
-    return this.oauth2Service.loadDiscoveryDocumentAndTryLogin();
+    this.oauth2Service.loadDiscoveryDocumentAndTryLogin();
   }
 
   login() {
@@ -62,7 +36,6 @@ export class AuthService {
 
   disconnect() {
     this.oauth2Service.logOut();
-    this.router.navigate(["/home"]);
   }
 
   getIdentity() {

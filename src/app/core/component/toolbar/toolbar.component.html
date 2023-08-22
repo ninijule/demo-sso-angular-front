@@ -1,18 +1,19 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [matMenuTriggerFor]="belowMenu">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+          [matMenuTriggerFor]="belowMenu">
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #belowMenu="matMenu" yPosition="below">
-    <button (click)="redirectToAnotherPage('')" mat-menu-item>Main</button>
-    <button *ngIf="!userIsLogged" (click)="redirectToAnotherPage('home')" mat-menu-item>Home</button>
-    <button *ngIf="userIsLogged" (click)="redirectToAnotherPage('profile')" mat-menu-item>Profile</button>
-    <button *ngIf="userIsLogged" (click)="logout()" mat-menu-item>Déconnexion</button>
+    <a routerLink="/main" mat-menu-item>Main</a>
+    <a routerLink="/home" mat-menu-item>Home</a>
+    <a routerLink="/profile" mat-menu-item>Profile</a>
+    <a (click)="logout()" mat-menu-item>Déconnexion</a>
   </mat-menu>
   <span>My App</span>
   <span class="example-spacer"></span>
-  <button (click)="redirectToAnotherPage('profile')" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+  <a mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon>person</mat-icon>
-  </button>
+  </a>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>share</mat-icon>
   </button>
