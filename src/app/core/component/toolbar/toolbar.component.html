@@ -6,7 +6,7 @@
   <mat-menu #belowMenu="matMenu" yPosition="below">
     <button (click)="login()" mat-menu-item>Login</button>
     <a routerLink="/home" mat-menu-item>Home</a>
-    <a *ngIf="token" routerLink="/profile" mat-menu-item>Profile</a>
+    <a *ngIf="token" routerLink="/profile" mat-menu-item>Hello {{name}}</a>
     <a (click)="logout()" mat-menu-item>Déconnexion</a>
   </mat-menu>
   <span>My App</span>

@@ -8,13 +8,11 @@ import {AuthService} from "../../service/auth.service";
 })
 export class HomeComponent {
 
-
+  name: string = "coucou";
 
   constructor(private authService: AuthService) {
 
   }
-
-
 
 
   login() {

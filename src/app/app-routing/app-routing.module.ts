@@ -15,8 +15,13 @@ const routes: Routes = [
     component: WelcomeComponent,
   },
   {
+    path: '',
+    redirectTo: 'welcome',
+    pathMatch: "full"
+  },
+  {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: 'welcome',
     pathMatch: "full"
   }
 

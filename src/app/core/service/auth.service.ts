@@ -50,7 +50,11 @@ export class AuthService {
   isUserLogged(): boolean {
     let hasIdToken = this.oauth2Service.hasValidIdToken();
     let hasAccessToken = this.oauth2Service.hasValidAccessToken();
-    return hasAccessToken && hasIdToken;
+    if(hasAccessToken && hasIdToken){
+      return true;
+    }else{
+      return false;
+    }
   }
 
 }
