@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../service/auth.service";
 
 @Component({
@@ -6,17 +6,19 @@ import {AuthService} from "../../service/auth.service";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
 
-  name: string = "coucou";
+  name: string = "";
 
   constructor(private authService: AuthService) {
 
   }
 
 
-  login() {
-    this.authService.login();
+  ngOnInit(): void {
+    let result:any = this.authService.getIdentity();
+    console.log(result);
+    this.name = result.name;
   }
 
 

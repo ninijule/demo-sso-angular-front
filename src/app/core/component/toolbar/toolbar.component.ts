@@ -16,9 +16,6 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.configureSSO();
-    const userClaims: any = this.authService.getIdentity();
-    console.log(userClaims.name);
-    this.name = userClaims.name ? userClaims.name : "";
   }
 
   logout() {

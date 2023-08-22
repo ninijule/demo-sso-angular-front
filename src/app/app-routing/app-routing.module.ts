@@ -3,6 +3,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {AuthGuard} from "../guard/auth.guard";
 import {HomeComponent} from "../core/component/home/home.component";
 import {WelcomeComponent} from "../core/component/welcome/welcome.component";
+import {CommonModule} from "@angular/common";
 
 const routes: Routes = [
   {
@@ -30,7 +31,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [HomeComponent, WelcomeComponent],
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    CommonModule
   ],
   exports: [RouterModule]
 })
