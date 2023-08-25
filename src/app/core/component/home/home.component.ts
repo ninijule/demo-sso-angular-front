@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../service/auth.service";
-import {QuestionService} from "../../service/question.service";
-import {QuestionModel} from "../../model/question.model";
+import {JobService} from "../../service/job.service";
+import {JobModel} from "../../model/job.model";
 
 @Component({
   selector: 'app-home',
@@ -12,9 +12,9 @@ export class HomeComponent implements OnInit {
 
   name: string = "";
 
-  questions: QuestionModel[] = [];
+  questions: JobModel[] = [];
 
-  constructor(private authService: AuthService, private questionService: QuestionService) {
+  constructor(private authService: AuthService, private jobService: JobService) {
 
   }
 
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     let result: any = this.authService.getIdentity();
     console.log(result);
     this.name = result.name;
-    this.questionService.getQuestion().subscribe((result) => {
+    this.jobService.getAllJobs().subscribe((result) => {
       this.questions = result;
     });
   }

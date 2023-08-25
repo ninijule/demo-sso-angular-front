@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {QuestionModel} from "../model/question.model";
+import {JobModel} from "../model/job.model";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 
@@ -9,17 +9,17 @@ import {AuthService} from "./auth.service";
   providedIn: 'root'
 })
 
-export class QuestionService {
+export class JobService {
 
   private apiUrl = "http://localhost:5050"
 
   constructor(private http: HttpClient, private authService: AuthService) {
   }
 
-  public getQuestion(): Observable<QuestionModel[]> {
+  public getAllJobs(): Observable<JobModel[]> {
     let headers = new HttpHeaders().set('Accept', 'application/json').set('Authorization', 'Bearer ' + this.authService.getAccessToken());
 
-    return this.http.get<QuestionModel[]>(this.apiUrl + "/question", {headers});
+    return this.http.get<JobModel[]>(this.apiUrl + "/job", {headers});
   }
 
 }

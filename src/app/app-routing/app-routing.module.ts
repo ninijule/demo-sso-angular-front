@@ -31,8 +31,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [HomeComponent, WelcomeComponent],
   imports: [
+    CommonModule,
     RouterModule.forRoot(routes),
-    CommonModule
   ],
   exports: [RouterModule]
 })
