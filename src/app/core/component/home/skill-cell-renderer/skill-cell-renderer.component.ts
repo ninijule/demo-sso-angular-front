@@ -5,11 +5,11 @@ import {JobModel} from "../../../model/job.model";
 
 
 @Component({
-  selector: 'app-cell-renderer',
-  templateUrl: './cell-renderer.component.html',
-  styleUrls: ['./cell-renderer.component.scss']
+  selector: 'app-skill-cell-renderer',
+  templateUrl: './skill-cell-renderer.component.html',
+  styleUrls: ['./skill-cell-renderer.component.scss']
 })
-export class CellRendererComponent implements ICellRendererAngularComp {
+export class SkillCellRendererComponent implements ICellRendererAngularComp {
   public cellValue!: string[];
   public jobs!: JobModel;
 

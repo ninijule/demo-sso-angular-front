@@ -4,7 +4,7 @@ import {JobService} from "../../service/job.service";
 import {JobModel} from "../../model/job.model";
 import {CellClickedEvent, ColDef, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
-import {CellRendererComponent} from "./cell-renderer/cell-renderer.component";
+import {SkillCellRendererComponent} from "./skill-cell-renderer/skill-cell-renderer.component";
 
 @Component({
   selector: 'app-home',
@@ -17,11 +17,11 @@ export class HomeComponent implements OnInit {
 
 
   public columnDefs: ColDef [] = [
-    {field: 'name'},
-    {field: 'description'},
-    {field: 'skills', cellRenderer: CellRendererComponent},
+    {field: 'name', initialWidth: 200},
+    {field: 'description', initialWidth: 500},
+    {field: 'skills', cellRenderer: SkillCellRendererComponent},
     {
-      field: 'technology', cellRenderer: CellRendererComponent
+      field: 'technology', cellRenderer: SkillCellRendererComponent
     }
   ];
 

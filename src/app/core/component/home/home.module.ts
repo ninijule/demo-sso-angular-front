@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {CellRendererComponent} from "./cell-renderer/cell-renderer.component";
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {SkillCellRendererComponent} from "./skill-cell-renderer/skill-cell-renderer.component";
 
 
 @NgModule({
-  declarations: [CellRendererComponent],
+  declarations: [SkillCellRendererComponent],
   imports: [
     CommonModule
   ]
 })
-export class HomeModule { }
+export class HomeModule {
+}
