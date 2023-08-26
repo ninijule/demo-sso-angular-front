@@ -4,6 +4,7 @@ import {JobService} from "../../service/job.service";
 import {JobModel} from "../../model/job.model";
 import {CellClickedEvent, ColDef, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
+import {CellRendererComponent} from "./cell-renderer/cell-renderer.component";
 
 @Component({
   selector: 'app-home',
@@ -18,16 +19,13 @@ export class HomeComponent implements OnInit {
   public columnDefs: ColDef [] = [
     {field: 'name'},
     {field: 'description'},
-    {field: 'skills', valueFormatter: this.formatJson},
+    {field: 'skills', cellRenderer: CellRendererComponent},
     {
-      field: 'technology', valueFormatter: this.formatJson
+      field: 'technology', cellRenderer: CellRendererComponent
     }
   ];
 
-  formatJson(params: any) {
-    console.log(params.value)
-    return params.value;
-  }
+
 
   // DefaultColDef sets props common to all Columns
   public defaultColDef: ColDef = {
@@ -54,7 +52,9 @@ export class HomeComponent implements OnInit {
 
   onGridReady(params: GridReadyEvent) {
     this.jobService.getAllJobs().subscribe((result) => {
-      this.jobs = result;
+      if(result){
+        this.jobs = result;
+      }
     });
   }
 

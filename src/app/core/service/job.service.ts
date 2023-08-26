@@ -13,8 +13,11 @@ export class JobService {
 
   private apiUrl = "http://localhost:5050"
 
+
   constructor(private http: HttpClient, private authService: AuthService) {
   }
+
+
 
   public getAllJobs(): Observable<JobModel[]> {
     let headers = new HttpHeaders().set('Accept', 'application/json').set('Authorization', 'Bearer ' + this.authService.getAccessToken());
