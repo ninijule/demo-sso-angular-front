@@ -17,11 +17,11 @@ export class HomeComponent implements OnInit {
 
 
   public columnDefs: ColDef [] = [
-    {field: 'name', initialWidth: 200},
-    {field: 'description', initialWidth: 500},
-    {field: 'skills', cellRenderer: SkillCellRendererComponent},
+    {field: 'name', initialWidth: 200, filter: true},
+    {field: 'description', initialWidth: 500, filter: true},
+    {field: 'skills', cellRenderer: SkillCellRendererComponent, filter: true},
     {
-      field: 'technology', cellRenderer: SkillCellRendererComponent
+      field: 'technology', cellRenderer: SkillCellRendererComponent, filter: true
     }
   ];
 
