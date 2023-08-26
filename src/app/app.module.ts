@@ -15,11 +15,13 @@ import {counterReducer} from "./core/reducer/counter.reducer";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { provideOAuthClient } from 'angular-oauth2-oidc';
+import { CellRendererComponent } from './core/component/home/cell-renderer/cell-renderer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
+    CellRendererComponent,
   ],
     imports: [
         AppRoutingModule,

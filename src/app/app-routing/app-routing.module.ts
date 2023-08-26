@@ -4,7 +4,7 @@ import {AuthGuard} from "../guard/auth.guard";
 import {HomeComponent} from "../core/component/home/home.component";
 import {WelcomeComponent} from "../core/component/welcome/welcome.component";
 import {CommonModule} from "@angular/common";
-import { AgGridModule } from 'ag-grid-angular';
+import {AgGridModule} from 'ag-grid-angular';
 
 const routes: Routes = [
   {
@@ -30,7 +30,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [HomeComponent, WelcomeComponent, ],
+  declarations: [HomeComponent, WelcomeComponent],
   imports: [
     CommonModule,
     AgGridModule,
