@@ -4,12 +4,14 @@ import {SkillCellRendererComponent} from "./skill-cell-renderer/skill-cell-rende
 import {TechnologyCellRendererComponent} from "./technology-cell-renderer/technology-cell-renderer.component";
 import {HomeComponent} from "./home.component";
 import {AgGridModule} from "ag-grid-angular";
+import {HomeRoutingModule} from "./home-routing.module";
 
 
 @NgModule({
   declarations: [HomeComponent, SkillCellRendererComponent, TechnologyCellRendererComponent],
   imports: [
     CommonModule,
+    HomeRoutingModule,
     AgGridModule
   ]
 })
