@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {AuthGuard} from "../guard/auth.guard";
-import {HomeComponent} from "../core/component/home/home.component";
 import {WelcomeComponent} from "../core/component/welcome/welcome.component";
 import {CommonModule} from "@angular/common";
 import {AgGridModule} from 'ag-grid-angular';
@@ -9,7 +8,7 @@ import {AgGridModule} from 'ag-grid-angular';
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent,
+    loadChildren: () => import('../core/component/home/home.module').then(m => m.HomeModule),
     canActivate: [AuthGuard]
   },
   {
@@ -30,7 +29,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [HomeComponent, WelcomeComponent],
+  declarations: [WelcomeComponent],
   imports: [
     CommonModule,
     AgGridModule,

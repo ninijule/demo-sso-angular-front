@@ -9,7 +9,7 @@ import {JobModel} from "../../../model/job.model";
   styleUrls: ['./technology-cell-renderer.component.scss']
 })
 export class TechnologyCellRendererComponent implements ICellRendererAngularComp {
-  public cellData!: string;
+  public cellData: string = "";
   public jobs!: JobModel;
 
   agInit(params: ICellRendererParams): void {

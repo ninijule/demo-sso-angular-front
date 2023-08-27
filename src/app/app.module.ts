@@ -14,7 +14,6 @@ import {StoreModule} from "@ngrx/store";
 import {counterReducer} from "./core/reducer/counter.reducer";
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {provideOAuthClient} from 'angular-oauth2-oidc';
-import {HomeModule} from "./core/component/home/home.module";
 
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import {HomeModule} from "./core/component/home/home.module";
   ],
   imports: [
     AppRoutingModule,
-    HomeModule,
     BrowserModule,
     CommonModule,
     HttpClientModule,
