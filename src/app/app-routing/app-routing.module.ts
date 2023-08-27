@@ -12,6 +12,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'generate',
+    loadChildren: () => import('../core/component/generate-question/generate-question.module').then(m => m.GenerateQuestionModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'welcome',
     component: WelcomeComponent,
   },
