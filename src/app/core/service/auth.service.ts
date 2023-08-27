@@ -28,6 +28,7 @@ export class AuthService {
     this.oauth2Service.configure(authCodeFlowConfig);
     this.oauth2Service.tokenValidationHandler = new JwksValidationHandler();
     this.oauth2Service.loadDiscoveryDocumentAndTryLogin();
+    this.oauth2Service.setupAutomaticSilentRefresh();
   }
 
   login() {
