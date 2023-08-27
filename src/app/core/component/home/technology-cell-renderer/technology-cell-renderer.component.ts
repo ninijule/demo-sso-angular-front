@@ -14,11 +14,7 @@ export class TechnologyCellRendererComponent implements ICellRendererAngularComp
 
   agInit(params: ICellRendererParams): void {
     this.jobs = params.data;
-    this.jobs.skills.forEach(item => {
-      item.technology.forEach(tech => {
-        this.cellData = this.cellData + tech.name
-      })
-    });
+    this.cellData = this.jobs.skills.flatMap(item => item.technology.map(tech => tech.name)).join(', ');
   }
 
   refresh(params: ICellRendererParams<any>): boolean {
