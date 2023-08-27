@@ -5,6 +5,7 @@ import {JobModel} from "../../model/job.model";
 import {CellClickedEvent, ColDef, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 import {SkillCellRendererComponent} from "./skill-cell-renderer/skill-cell-renderer.component";
+import {TechnologyCellRendererComponent} from "./technology-cell-renderer/technology-cell-renderer.component";
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
     {field: 'description', initialWidth: 500, filter: true},
     {field: 'skills', cellRenderer: SkillCellRendererComponent, filter: true},
     {
-      field: 'technology', cellRenderer: SkillCellRendererComponent, filter: true
+      field: 'technology', cellRenderer: TechnologyCellRendererComponent, filter: true
     }
   ];
 
