@@ -1,13 +1,38 @@
 <form>
   <h4>mat-select</h4>
-  <mat-form-field>
-    <mat-label>Favorite food</mat-label>
-    <mat-select [(ngModel)]="selectedValue" name="food">
-      <mat-option *ngFor="let job of jobs" [value]="job.name">
-        {{job.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <p> Selected food: {{selectedValue}} </p>
+  <div>
+    <mat-form-field>
+      <mat-label>Selected Job</mat-label>
+      <mat-select (selectionChange)="getSelectedEventJob($event)" [(ngModel)]="selectedJob" name="job">
+        <mat-option *ngFor="let job of jobs" [value]="job.name">
+          {{job.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p> Selected job: {{selectedJob}} </p>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Selected Skills</mat-label>
+      <mat-select (selectionChange)="getSelectedEventSkills($event)" [(ngModel)]="selectedSkills"
+                  [disabled]="isDisabledSkills" multiple name="skills">
+        <mat-option *ngFor="let skills of job.skills" [value]="skills.name">
+          {{skills.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p> Selected skills: {{selectedSkills}} </p>
+  </div>
 
+  <div>
+    <mat-form-field>
+      <mat-label>Selected Technology</mat-label>
+      <mat-select [(ngModel)]="selectedTechnology" [disabled]="isDisabledTechnology" multiple name="technology">
+        <mat-option *ngFor="let technology of technologies" [value]="technology.name">
+          {{technology.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p> Selected technology: {{selectedTechnology}} </p>
+  </div>
 </form>

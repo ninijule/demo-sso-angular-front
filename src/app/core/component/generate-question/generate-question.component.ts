@@ -1,11 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {JobService} from "../../service/job.service";
 import {JobModel} from "../../model/job.model";
-
-interface Food {
-  value: string;
-  viewValue: string;
-}
+import {TechnologyModel} from "../../model/technology.model";
 
 
 @Component({
@@ -15,13 +11,25 @@ interface Food {
 })
 export class GenerateQuestionComponent implements OnInit {
 
-  selectedValue!: string;
+  selectedJob!: string;
+  selectedSkills!: JobModel;
+  selectedTechnology!: string;
+
   jobs!: JobModel[];
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-  ];
+  job: JobModel = {
+    name: "",
+    skills: []
+  };
+
+  technologies: TechnologyModel[] = [{
+    name: "",
+    description: "",
+    version: ""
+  }];
+
+  isDisabledSkills = true;
+
+  isDisabledTechnology = true;
 
   constructor(private jobService: JobService) {
   }
@@ -30,6 +38,23 @@ export class GenerateQuestionComponent implements OnInit {
     this.jobService.getAllJobs().subscribe((result) => {
       if (result) this.jobs = result;
     })
+  }
+
+  getSelectedEventJob($event: any) {
+    this.isDisabledSkills = false;
+    this.job = this.jobs.find(item => item.name === $event.value) ?? this.job;
+  }
+
+  getSelectedEventSkills($event: any) {
+    this.isDisabledTechnology = false;
+    console.log($event);
+
+    for (const item of this.job.skills) {
+      console.log(item.technology);
+      this.technologies.push(...item.technology);
+    }
+
+
   }
 
 }
