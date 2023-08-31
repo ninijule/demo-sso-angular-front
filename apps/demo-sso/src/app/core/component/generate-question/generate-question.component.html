@@ -1,0 +1,26 @@
+<form>
+  <h4>mat-select</h4>
+  <mat-form-field>
+    <mat-label>Select Job</mat-label>
+    <mat-select
+      (selectionChange)="onJobSelectedChange($event)"
+      [(ngModel)]="selectedJob"
+      name="job"
+    >
+      <mat-option *ngFor="let job of jobs" [value]="job.name">
+        {{ job.name }}
+      </mat-option>
+    </mat-select>
+    <p>Selected job: {{ selectedJob }}</p>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Selected Skills</mat-label>
+    <mat-select [(ngModel)]="selectedSkills" [disabled]="true" name="skills">
+      <mat-option *ngFor="let job of jobs" [value]="job.name">
+        {{ job.name }}
+      </mat-option>
+    </mat-select>
+    <p>Selected skills: {{ selectedSkills }}</p>
+  </mat-form-field>
+</form>
