@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {JobService} from "../../service/job.service";
 import {JobModel} from "../../model/job.model";
 import {TechnologyModel} from "../../model/technology.model";
+import {SkillModel} from "../../model/skill.model";
 
 
 @Component({
@@ -21,11 +22,9 @@ export class GenerateQuestionComponent implements OnInit {
     skills: []
   };
 
-  technologies: TechnologyModel[] = [{
-    name: "",
-    description: "",
-    version: ""
-  }];
+  technologies: TechnologyModel[] = [];
+
+  skills: SkillModel[] = [];
 
   isDisabledSkills = true;
 
@@ -41,20 +40,16 @@ export class GenerateQuestionComponent implements OnInit {
   }
 
   getSelectedEventJob($event: any) {
-    this.isDisabledSkills = false;
     this.job = this.jobs.find(item => item.name === $event.value) ?? this.job;
+    if (this.job.skills.length !== 0) {
+      this.isDisabledSkills = false;
+    }
   }
 
   getSelectedEventSkills($event: any) {
     this.isDisabledTechnology = false;
-    console.log($event);
-
-    for (const item of this.job.skills) {
-      console.log(item.technology);
-      this.technologies.push(...item.technology);
-    }
-
-
+    this.skills = $event.value;
+    console.log(this.skills);
   }
 
 }

@@ -16,7 +16,7 @@
       <mat-label>Selected Skills</mat-label>
       <mat-select (selectionChange)="getSelectedEventSkills($event)" [(ngModel)]="selectedSkills"
                   [disabled]="isDisabledSkills" multiple name="skills">
-        <mat-option *ngFor="let skills of job.skills" [value]="skills.name">
+        <mat-option *ngFor="let skills of job.skills" [value]="skills">
           {{skills.name}}
         </mat-option>
       </mat-select>
