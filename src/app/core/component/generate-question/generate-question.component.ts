@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {JobService} from "../../service/job.service";
 import {JobModel} from "../../model/job.model";
 import {TechnologyModel} from "../../model/technology.model";
-import {SkillModel} from "../../model/skill.model";
 
 
 @Component({
@@ -23,8 +22,6 @@ export class GenerateQuestionComponent implements OnInit {
   };
 
   technologies: TechnologyModel[] = [];
-
-  skills: SkillModel[] = [];
 
   isDisabledSkills = true;
 
@@ -47,9 +44,25 @@ export class GenerateQuestionComponent implements OnInit {
   }
 
   getSelectedEventSkills($event: any) {
-    this.isDisabledTechnology = false;
-    this.skills = $event.value;
-    console.log(this.skills);
+
+    if ($event.value.length === 0) {
+      return; // No need to proceed if the input is empty
+    }
+
+    const selectedSkills = $event.value;
+
+    for (const skill of selectedSkills) {
+      for (const tech of skill.technology) {
+        if (!this.technologies.includes(tech)) {
+          this.technologies.push(tech);
+        }
+      }
+    }
+
+    if (this.technologies.length > 0) {
+      this.isDisabledTechnology = false;
+    }
+
   }
 
 }
