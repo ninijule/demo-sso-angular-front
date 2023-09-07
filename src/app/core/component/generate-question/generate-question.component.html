@@ -1,38 +1,37 @@
-<form>
+<form (ngSubmit)="onSubmit()" [formGroup]="jobForm">
   <h4>mat-select</h4>
   <div>
     <mat-form-field>
       <mat-label>Selected Job</mat-label>
-      <mat-select (selectionChange)="getSelectedEventJob($event)" [(ngModel)]="selectedJob" name="job">
+      <mat-select (selectionChange)="getSelectedEventJob($event)" [formControl]="jobControl" id="job" name="job">
         <mat-option *ngFor="let job of jobs" [value]="job.name">
           {{job.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <p> Selected job: {{selectedJob}} </p>
   </div>
   <div>
     <mat-form-field>
       <mat-label>Selected Skills</mat-label>
-      <mat-select (selectionChange)="getSelectedEventSkills($event)" [(ngModel)]="selectedSkills"
-                  [disabled]="isDisabledSkills" multiple name="skills">
+      <mat-select (selectionChange)="getSelectedEventSkills($event)" [formControl]="skillsControl"
+                  id="skills" multiple name="skills">
         <mat-option *ngFor="let skills of job.skills" [value]="skills">
           {{skills.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <p> Selected skills: {{selectedSkills}} </p>
   </div>
 
   <div>
     <mat-form-field>
       <mat-label>Selected Technology</mat-label>
-      <mat-select [(ngModel)]="selectedTechnology" [disabled]="isDisabledTechnology" multiple name="technology">
+      <mat-select [disabled]="isDisabledTechnology" id="technology" multiple name="technology">
         <mat-option *ngFor="let skill of technologies" [value]="technologies">
           {{skill.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <p> Selected technology: {{selectedTechnology}} </p>
   </div>
+
+  <button class="button" type="submit">Generate</button>
 </form>

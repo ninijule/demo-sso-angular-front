@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {JobService} from "../../service/job.service";
 import {JobModel} from "../../model/job.model";
 import {TechnologyModel} from "../../model/technology.model";
+import {FormBuilder, FormControl} from "@angular/forms";
+import {SkillModel} from "../../model/skill.model";
 
 
 @Component({
@@ -12,8 +14,6 @@ import {TechnologyModel} from "../../model/technology.model";
 export class GenerateQuestionComponent implements OnInit {
 
   selectedJob!: string;
-  selectedSkills!: JobModel;
-  selectedTechnology!: string;
 
   jobs!: JobModel[];
   job: JobModel = {
@@ -23,11 +23,20 @@ export class GenerateQuestionComponent implements OnInit {
 
   technologies: TechnologyModel[] = [];
 
-  isDisabledSkills = true;
-
   isDisabledTechnology = true;
 
-  constructor(private jobService: JobService) {
+  skills: SkillModel[] = [];
+
+  skillsControl = new FormControl([1]);
+
+  jobControl = new FormControl("");
+
+  jobForm = this.formBuilder.group({
+    job: this.jobControl,
+    skill: this.skillsControl
+  });
+
+  constructor(private jobService: JobService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -39,7 +48,7 @@ export class GenerateQuestionComponent implements OnInit {
   getSelectedEventJob($event: any) {
     this.job = this.jobs.find(item => item.name === $event.value) ?? this.job;
     if (this.job.skills.length !== 0) {
-      this.isDisabledSkills = false;
+      this.jobForm.get('skills')?.enable();
     }
   }
 
@@ -50,6 +59,8 @@ export class GenerateQuestionComponent implements OnInit {
     }
 
     const selectedSkills = $event.value;
+
+    this.skills = $event.value;
 
     for (const skill of selectedSkills) {
       for (const tech of skill.technology) {
@@ -63,6 +74,10 @@ export class GenerateQuestionComponent implements OnInit {
       this.isDisabledTechnology = false;
     }
 
+  }
+
+  onSubmit(): void {
+    console.log(this.jobForm.value);
   }
 
 }
