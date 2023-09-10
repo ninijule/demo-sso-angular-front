@@ -4,6 +4,7 @@ import {JobModel} from "../../model/job.model";
 import {TechnologyModel} from "../../model/technology.model";
 import {FormBuilder, FormControl} from "@angular/forms";
 import {SkillModel} from "../../model/skill.model";
+import {SkillService} from "../../service/skill.service";
 
 
 @Component({
@@ -36,19 +37,22 @@ export class GenerateQuestionComponent implements OnInit {
     skill: this.skillsControl
   });
 
-  constructor(private jobService: JobService, private formBuilder: FormBuilder) {
+  constructor(private jobService: JobService,
+              private skillService: SkillService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
     this.jobService.getAllJobs().subscribe((result) => {
       if (result) this.jobs = result;
-    })
+    });
   }
 
   getSelectedEventJob($event: any) {
     this.job = this.jobs.find(item => item.name === $event.value) ?? this.job;
     if (this.job.skills.length !== 0) {
       this.jobForm.get('skills')?.enable();
+      this.
     }
   }
 
