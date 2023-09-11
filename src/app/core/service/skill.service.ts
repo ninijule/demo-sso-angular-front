@@ -14,9 +14,9 @@ export class SkillService {
   constructor(private http: HttpClient, private authService: AuthService) {
   }
 
-  public getAllSkills(): Observable<SkillModel[]> {
+  public getSkillsbyJobName(jobName: string): Observable<SkillModel[]> {
     let headers = new HttpHeaders().set('Accept', 'application/json').set('Authorization', 'Bearer ' + this.authService.getAccessToken());
-    return this.http.get<SkillModel[]>(this.apiUrl + "/skill", {headers});
+    return this.http.get<SkillModel[]>(this.apiUrl + "/skill/" + jobName, {headers});
   }
 
 }

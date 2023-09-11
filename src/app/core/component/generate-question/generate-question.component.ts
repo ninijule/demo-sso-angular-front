@@ -18,6 +18,7 @@ export class GenerateQuestionComponent implements OnInit {
 
   jobs!: JobModel[];
   job: JobModel = {
+    id: "",
     name: "",
     skills: []
   };
@@ -50,10 +51,13 @@ export class GenerateQuestionComponent implements OnInit {
 
   getSelectedEventJob($event: any) {
     this.job = this.jobs.find(item => item.name === $event.value) ?? this.job;
-    if (this.job.skills.length !== 0) {
-      this.jobForm.get('skills')?.enable();
-      this.
-    }
+
+    this.skillService.getSkillsbyJobName(this.job.id).subscribe((result) => {
+      console.log(result);
+    });
+    this.jobForm.get('skills')?.enable();
+    console.log("this")
+
   }
 
   getSelectedEventSkills($event: any) {
