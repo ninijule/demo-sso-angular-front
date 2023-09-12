@@ -19,4 +19,9 @@ export class SkillService {
     return this.http.get<SkillModel[]>(this.apiUrl + "/skill/" + jobName, {headers});
   }
 
+  public getJobAndSkillByJobName(jobId: string): Observable<SkillModel[]> {
+    let headers = new HttpHeaders().set('Accept', 'application/json').set('Authorization', 'Bearer ' + this.authService.getAccessToken());
+    return this.http.get<SkillModel[]>(this.apiUrl + "/skill/" + jobId, {headers});
+  }
+
 }

@@ -18,7 +18,6 @@ export class JobService {
   }
 
 
-
   public getAllJobs(): Observable<JobModel[]> {
     let headers = new HttpHeaders().set('Accept', 'application/json').set('Authorization', 'Bearer ' + this.authService.getAccessToken());
     return this.http.get<JobModel[]>(this.apiUrl + "/job", {headers});

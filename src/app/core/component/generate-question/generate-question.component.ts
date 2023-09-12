@@ -14,8 +14,6 @@ import {SkillService} from "../../service/skill.service";
 })
 export class GenerateQuestionComponent implements OnInit {
 
-  selectedJob!: string;
-
   jobs!: JobModel[];
   job: JobModel = {
     id: "",
@@ -24,8 +22,6 @@ export class GenerateQuestionComponent implements OnInit {
   };
 
   technologies: TechnologyModel[] = [];
-
-  isDisabledTechnology = true;
 
   skills: SkillModel[] = [];
 
@@ -44,6 +40,7 @@ export class GenerateQuestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.jobForm.get('skills')?.disable();
     this.jobService.getAllJobs().subscribe((result) => {
       if (result) this.jobs = result;
     });
@@ -52,35 +49,16 @@ export class GenerateQuestionComponent implements OnInit {
   getSelectedEventJob($event: any) {
     this.job = this.jobs.find(item => item.name === $event.value) ?? this.job;
 
-    this.skillService.getSkillsbyJobName(this.job.id).subscribe((result) => {
-      console.log(result);
+    this.skillService.getJobAndSkillByJobName(this.job.id).subscribe((result) => {
+      if (result.length > 1) {
+        this.skills = result;
+        this.jobForm.get('skills')?.enable();
+      }
     });
-    this.jobForm.get('skills')?.enable();
-    console.log("this")
-
   }
 
   getSelectedEventSkills($event: any) {
 
-    if ($event.value.length === 0) {
-      return; // No need to proceed if the input is empty
-    }
-
-    const selectedSkills = $event.value;
-
-    this.skills = $event.value;
-
-    for (const skill of selectedSkills) {
-      for (const tech of skill.technology) {
-        if (!this.technologies.includes(tech)) {
-          this.technologies.push(tech);
-        }
-      }
-    }
-
-    if (this.technologies.length > 0) {
-      this.isDisabledTechnology = false;
-    }
 
   }
 
