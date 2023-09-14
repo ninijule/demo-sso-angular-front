@@ -5,6 +5,7 @@ import {TechnologyModel} from "../../model/technology.model";
 import {FormBuilder, FormControl} from "@angular/forms";
 import {SkillModel} from "../../model/skill.model";
 import {SkillService} from "../../service/skill.service";
+import {TechnologyService} from "../../service/technology.service";
 
 
 @Component({
@@ -25,7 +26,7 @@ export class GenerateQuestionComponent implements OnInit {
 
   skills: SkillModel[] = [];
 
-  skillsControl = new FormControl([1]);
+  skillsControl = new FormControl([]);
 
   jobControl = new FormControl("");
 
@@ -36,6 +37,7 @@ export class GenerateQuestionComponent implements OnInit {
 
   constructor(private jobService: JobService,
               private skillService: SkillService,
+              private technologyService: TechnologyService,
               private formBuilder: FormBuilder) {
   }
 
@@ -49,7 +51,7 @@ export class GenerateQuestionComponent implements OnInit {
   getSelectedEventJob($event: any) {
     this.job = this.jobs.find(item => item.name === $event.value) ?? this.job;
 
-    this.skillService.getJobAndSkillByJobName(this.job.id).subscribe((result) => {
+    this.skillService.getJobAndSkillByJobId(this.job.id).subscribe((result) => {
       if (result.length > 1) {
         this.skills = result;
         this.jobForm.get('skills')?.enable();
@@ -59,7 +61,13 @@ export class GenerateQuestionComponent implements OnInit {
 
   getSelectedEventSkills($event: any) {
 
+    const skillIdList: string [] = [];
+    $event.value.map((id: string) => skillIdList.push(id));
+    console.log(skillIdList)
+    this.technologyService.getTechnologyBySKillId(skillIdList).subscribe((result) => {
+      console.log(result);
 
+    });
   }
 
   onSubmit(): void {
