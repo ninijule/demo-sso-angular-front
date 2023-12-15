@@ -30,9 +30,13 @@ export class GenerateQuestionComponent implements OnInit {
 
   jobControl = new FormControl("");
 
+  technologiesControl = new FormControl([]);
+
+
   jobForm = this.formBuilder.group({
     job: this.jobControl,
-    skill: this.skillsControl
+    skill: this.skillsControl,
+    technology: this.technologiesControl
   });
 
   constructor(private jobService: JobService,
@@ -52,10 +56,10 @@ export class GenerateQuestionComponent implements OnInit {
     this.job = this.jobs.find(item => item.name === $event.value) ?? this.job;
 
     this.skillService.getJobAndSkillByJobId(this.job.id).subscribe((result) => {
-      if (result.length > 1) {
-        this.skills = result;
-        this.jobForm.get('skills')?.enable();
-      }
+      this.skills = result;
+      this.jobForm.get('skills')?.enable();
+      console.log(this.skills);
+
     });
   }
 
@@ -65,8 +69,7 @@ export class GenerateQuestionComponent implements OnInit {
     $event.value.map((id: string) => skillIdList.push(id));
     console.log(skillIdList)
     this.technologyService.getTechnologyBySKillId(skillIdList).subscribe((result) => {
-      console.log(result);
-
+      this.technologies = result;
     });
   }
 

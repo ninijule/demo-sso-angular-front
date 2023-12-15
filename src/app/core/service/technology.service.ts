@@ -16,7 +16,7 @@ export class TechnologyService {
 
   public getTechnologyBySKillId(skillIdList: string[]): Observable<TechnologyModel[]> {
     let headers = new HttpHeaders().set('Accept', 'application/json').set('Authorization', 'Bearer ' + this.authService.getAccessToken());
-    return this.http.post<TechnologyModel[]>(this.apiUrl + "/technology/", {skillIdList}, {headers});
+    return this.http.post<TechnologyModel[]>(this.apiUrl + "/technology", {skillIdList}, {headers});
   }
 
 }
