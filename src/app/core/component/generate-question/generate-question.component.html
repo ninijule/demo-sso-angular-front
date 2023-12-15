@@ -25,8 +25,8 @@
     <mat-form-field>
       <mat-label>Selected Technology</mat-label>
       <mat-select [formControl]="technologiesControl" id="technology" multiple name="technology">
-        <mat-option *ngFor="let skill of technologies" [value]="technologies">
-          {{skill.name}}
+        <mat-option *ngFor="let technology of technologies" [value]="technologies">
+          {{technology.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
