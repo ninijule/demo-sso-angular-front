@@ -7,10 +7,10 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {PipeModule} from "../../../pipe/pipe.module";
-
+import {CardQuestionComponent} from "./card-question/card-question.component";
 
 @NgModule({
-  declarations: [GenerateQuestionComponent],
+  declarations: [GenerateQuestionComponent, CardQuestionComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -20,7 +20,7 @@ import {PipeModule} from "../../../pipe/pipe.module";
     NgFor,
     MatInputModule,
     GenerateQuestionRoutingModule,
-    PipeModule,
+    PipeModule
   ]
 })
 export class GenerateQuestionModule {

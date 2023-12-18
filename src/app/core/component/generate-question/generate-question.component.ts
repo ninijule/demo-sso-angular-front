@@ -7,6 +7,7 @@ import {SkillModel} from "../../model/skill.model";
 import {SkillService} from "../../service/skill.service";
 import {TechnologyService} from "../../service/technology.service";
 import {LevelModel} from "../../model/level.model";
+import {GenerateQuestionService} from "../../service/generate-question.service";
 
 
 @Component({
@@ -46,6 +47,7 @@ export class GenerateQuestionComponent implements OnInit {
   constructor(private jobService: JobService,
               private skillService: SkillService,
               private technologyService: TechnologyService,
+              private generateQuestionService: GenerateQuestionService,
               private formBuilder: FormBuilder) {
   }
 
@@ -79,6 +81,10 @@ export class GenerateQuestionComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.jobForm.value);
+    let listSkill = this.jobForm.value.skill;
+    this.generateQuestionService.getRandomQuestionByParameters(listSkill!).subscribe((result) => {
+      console.log(result);
+    });
   }
 
 }
