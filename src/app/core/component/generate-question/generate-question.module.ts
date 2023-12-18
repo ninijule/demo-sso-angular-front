@@ -6,6 +6,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
+import {PipeModule} from "../../../pipe/pipe.module";
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {MatInputModule} from "@angular/material/input";
     NgFor,
     MatInputModule,
     GenerateQuestionRoutingModule,
+    PipeModule,
   ]
 })
 export class GenerateQuestionModule {

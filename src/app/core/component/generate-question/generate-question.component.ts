@@ -6,6 +6,7 @@ import {FormBuilder, FormControl} from "@angular/forms";
 import {SkillModel} from "../../model/skill.model";
 import {SkillService} from "../../service/skill.service";
 import {TechnologyService} from "../../service/technology.service";
+import {LevelModel} from "../../model/level.model";
 
 
 @Component({
@@ -22,9 +23,12 @@ export class GenerateQuestionComponent implements OnInit {
     skills: []
   };
 
+
   technologies: TechnologyModel[] = [];
 
   skills: SkillModel[] = [];
+
+  levels = LevelModel;
 
   skillsControl = new FormControl([]);
 
