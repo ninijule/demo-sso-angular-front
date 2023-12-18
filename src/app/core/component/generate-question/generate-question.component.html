@@ -33,6 +33,10 @@
     </mat-form-field>
   </div>
 
+  <mat-slider [(ngModel)]="numberOfQuestionsSlider" discrete max="50" min="0" showTickMarks step="1">
+    <input matSliderThumb>
+  </mat-slider>
+
 
   <button color="primary" mat-button type="submit">Generate</button>
 </form>

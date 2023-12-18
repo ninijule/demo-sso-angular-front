@@ -31,6 +31,8 @@ export class GenerateQuestionComponent implements OnInit {
 
   levels = LevelModel;
 
+  numberOfQuestionsSlider: number = 1;
+
   skillsControl = new FormControl([]);
 
   jobControl = new FormControl("");
@@ -82,7 +84,7 @@ export class GenerateQuestionComponent implements OnInit {
   onSubmit(): void {
     console.log(this.jobForm.value);
     let listSkill = this.jobForm.value.skill;
-    this.generateQuestionService.getRandomQuestionByParameters(listSkill!).subscribe((result) => {
+    this.generateQuestionService.getRandomQuestionByParameters(listSkill!, this.numberOfQuestionsSlider).subscribe((result) => {
       console.log(result);
     });
   }

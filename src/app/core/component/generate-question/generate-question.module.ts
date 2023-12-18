@@ -8,6 +8,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {PipeModule} from "../../../pipe/pipe.module";
 import {CardQuestionComponent} from "./card-question/card-question.component";
+import {MatSliderModule} from "@angular/material/slider";
 
 @NgModule({
   declarations: [GenerateQuestionComponent, CardQuestionComponent],
@@ -20,7 +21,8 @@ import {CardQuestionComponent} from "./card-question/card-question.component";
     NgFor,
     MatInputModule,
     GenerateQuestionRoutingModule,
-    PipeModule
+    PipeModule,
+    MatSliderModule
   ]
 })
 export class GenerateQuestionModule {
