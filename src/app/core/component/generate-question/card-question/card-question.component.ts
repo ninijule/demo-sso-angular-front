@@ -9,6 +9,6 @@ import {GeneratedQuestionModel} from "../../../model/generated-question.model";
 export class CardQuestionComponent {
 
   @Input()
-  questions: GeneratedQuestionModel[] = [];
+  technos: GeneratedQuestionModel[] = [];
 
 }

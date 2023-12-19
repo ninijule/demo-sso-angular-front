@@ -10,6 +10,7 @@ import {PipeModule} from "../../../pipe/pipe.module";
 import {CardQuestionComponent} from "./card-question/card-question.component";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [GenerateQuestionComponent, CardQuestionComponent],
@@ -24,7 +25,8 @@ import {MatCardModule} from "@angular/material/card";
     GenerateQuestionRoutingModule,
     PipeModule,
     MatSliderModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ]
 })
 export class GenerateQuestionModule {

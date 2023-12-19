@@ -1,12 +1,12 @@
-<div *ngFor="let question of questions">
-  <mat-card>
+<div *ngFor="let tech of technos">
+  <h3>Question sur la technology : {{tech.name}}</h3>
+
+  <mat-card *ngFor="let question of tech.questions">
     <mat-card-header>
-      <mat-card-title>Actions Buttons</mat-card-title>
-      <mat-card-subtitle>Start</mat-card-subtitle>
+      <mat-card-title>{{question.ask}}</mat-card-title>
     </mat-card-header>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
+    <mat-card-content>
+      {{question.answer}}
+    </mat-card-content>
   </mat-card>
 </div>
