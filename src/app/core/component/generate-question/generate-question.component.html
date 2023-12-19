@@ -26,17 +26,21 @@
     <mat-form-field>
       <mat-label>Choisir les technologies</mat-label>
       <mat-select [formControl]="technologiesControl" id="technology" multiple name="technology">
-        <mat-option *ngFor="let technology of technologies" [value]="technologies">
+        <mat-option *ngFor="let technology of technologies" [value]="technology.name">
           {{technology.name}} {{technology.version}}
         </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 
-  <mat-slider [(ngModel)]="numberOfQuestionsSlider" discrete max="50" min="0" showTickMarks step="1">
+  <mat-slider [formControl]="numberOfQuestionsSlider" discrete max="50" min="0" name="numberOfQuestionsSlider"
+              ngDefaultControl showTickMarks step="1">
     <input matSliderThumb>
   </mat-slider>
 
 
   <button color="primary" mat-button type="submit">Generate</button>
 </form>
+
+<app-card-question [questions]="this.questions"/>
+

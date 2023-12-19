@@ -9,6 +9,7 @@ import {MatInputModule} from "@angular/material/input";
 import {PipeModule} from "../../../pipe/pipe.module";
 import {CardQuestionComponent} from "./card-question/card-question.component";
 import {MatSliderModule} from "@angular/material/slider";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [GenerateQuestionComponent, CardQuestionComponent],
@@ -22,7 +23,8 @@ import {MatSliderModule} from "@angular/material/slider";
     MatInputModule,
     GenerateQuestionRoutingModule,
     PipeModule,
-    MatSliderModule
+    MatSliderModule,
+    MatCardModule
   ]
 })
 export class GenerateQuestionModule {

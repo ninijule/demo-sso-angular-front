@@ -2,12 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {JobService} from "../../service/job.service";
 import {JobModel} from "../../model/job.model";
 import {TechnologyModel} from "../../model/technology.model";
-import {FormBuilder, FormControl} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {SkillModel} from "../../model/skill.model";
 import {SkillService} from "../../service/skill.service";
 import {TechnologyService} from "../../service/technology.service";
 import {LevelModel} from "../../model/level.model";
 import {GenerateQuestionService} from "../../service/generate-question.service";
+import {GeneratedQuestionModel} from "../../model/generated-question.model";
 
 
 @Component({
@@ -29,15 +30,17 @@ export class GenerateQuestionComponent implements OnInit {
 
   skills: SkillModel[] = [];
 
+  questions: GeneratedQuestionModel[] = [];
+
   levels = LevelModel;
 
-  numberOfQuestionsSlider: number = 1;
+  numberOfQuestionsSlider = new FormControl([]);
 
   skillsControl = new FormControl([]);
 
   jobControl = new FormControl("");
 
-  technologiesControl = new FormControl([]);
+  technologiesControl = new FormControl<TechnologyModel | null>(null, Validators.required);
 
 
   jobForm = this.formBuilder.group({
@@ -66,26 +69,24 @@ export class GenerateQuestionComponent implements OnInit {
     this.skillService.getJobAndSkillByJobId(this.job.id).subscribe((result) => {
       this.skills = result;
       this.jobForm.get('skills')?.enable();
-      console.log(this.skills);
-
     });
   }
 
   getSelectedEventSkills($event: any) {
-
     const skillIdList: string [] = [];
     $event.value.map((id: string) => skillIdList.push(id));
-    console.log(skillIdList)
     this.technologyService.getTechnologyBySKillId(skillIdList).subscribe((result) => {
       this.technologies = result;
     });
   }
 
   onSubmit(): void {
-    console.log(this.jobForm.value);
-    let listSkill = this.jobForm.value.skill;
-    this.generateQuestionService.getRandomQuestionByParameters(listSkill!, this.numberOfQuestionsSlider).subscribe((result) => {
-      console.log(result);
+    console.log(this.jobForm.value.technology);
+    let numberOfQuestion = this.numberOfQuestionsSlider.value;
+
+
+    this.generateQuestionService.getRandomQuestionByParameters(this.technologiesControl.value!, Number(numberOfQuestion)).subscribe((result) => {
+      this.questions = result;
     });
   }
 
