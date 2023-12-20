@@ -1,12 +1,17 @@
-<div *ngFor="let tech of technos" class="flex column align gap-8">
-  <h3>{{tech.name}}</h3>
+<div *ngFor="let tech of technos" class="flex column align">
+  <h3>{{tech.name}} {{tech.version}}</h3>
 
-  <mat-card *ngFor="let question of tech.questions" class="card">
-    <mat-card-header>
-      <mat-card-title>{{question.ask}}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      {{question.answer}}
-    </mat-card-content>
-  </mat-card>
+  <div *ngIf="tech.questions.length > 1; else elseBlock" class="flex column align gap-8">
+    <mat-card *ngFor="let question of tech.questions" class="card">
+      <mat-card-header>
+        <mat-card-title>{{question.ask}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        {{question.answer}}
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <ng-template #elseBlock>
+    Aucune question pour l'instant pour cette technologie. Voulez-vous en rajouter ?
+  </ng-template>
 </div>

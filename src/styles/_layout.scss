@@ -10,7 +10,7 @@
 
 @for $i from 1 through 30 {
   .gap-#{4 * $i} {
-    gap: #{4 * $i}px;
+    gap: #{4 * $i}px !important;
   }
 }
 
