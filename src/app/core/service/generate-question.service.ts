@@ -14,11 +14,10 @@ export class GenerateQuestionService {
   constructor(private http: HttpClient, private authService: AuthService) {
   }
 
-  public getRandomQuestionByParameters(technologyList: any, numberOfQuestions: number): Observable<GeneratedQuestionModel[]> {
+  public getRandomQuestionByParameters(technologyList: any): Observable<GeneratedQuestionModel[]> {
     let headers = new HttpHeaders().set('Accept', 'application/json').set('Authorization', 'Bearer ' + this.authService.getAccessToken());
     return this.http.post<GeneratedQuestionModel[]>(this.apiUrl + "/generate-question", {
-      technologyList,
-      numberOfQuestions
+      technologyList
     }, {headers});
   }
 

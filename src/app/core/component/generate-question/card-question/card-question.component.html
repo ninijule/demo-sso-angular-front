@@ -1,7 +1,7 @@
-<div *ngFor="let tech of technos">
-  <h3>Question sur la technology : {{tech.name}}</h3>
+<div *ngFor="let tech of technos" class="flex column align gap-8">
+  <h3>{{tech.name}}</h3>
 
-  <mat-card *ngFor="let question of tech.questions">
+  <mat-card *ngFor="let question of tech.questions" class="card">
     <mat-card-header>
       <mat-card-title>{{question.ask}}</mat-card-title>
     </mat-card-header>

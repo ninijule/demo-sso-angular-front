@@ -11,4 +11,7 @@ export class CardQuestionComponent {
   @Input()
   technos: GeneratedQuestionModel[] = [];
 
+  @Input()
+  numberOfQuestions: number | null = 0;
+
 }

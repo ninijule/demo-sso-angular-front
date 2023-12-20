@@ -1,0 +1,23 @@
+
+.flex {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+
+@for $i from 1 through 30 {
+  .gap-#{4 * $i} {
+    gap: #{4 * $i}px;
+  }
+}
+
+.column {
+  flex-direction: column;
+}
+
+.align {
+  align-items: center;
+}
